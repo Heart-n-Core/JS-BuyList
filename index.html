@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html>
 <head lang="uk">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Список покупок</title>
-
 
     <link rel="stylesheet" type="text/css" href="main.css" />
 </head>
@@ -12,142 +9,28 @@
     <div class="container">
         <div class="main-content">
             <div class="input-group">
-                <input type="text" placeholder="Назва товару">
+                <input id="input-item-name" type="text" placeholder="Назва товару">
                 <button id="add-new-button">Додати</button>
             </div>
 
-            <div class="item-row">
-                <div class="item-name">Помідори</div>
-                <div class="quantity-controls">
-                <button class="minus">-</button>
-                <div class="quantity-display">2</div>
-                <button class="plus">+</button>
-                </div>
-                <div class="action-buttons">
-                    <button class="not-bought">Не куплено</button>
-                    <button class="remove">×</button>
-                </div>
             </div>
-
-            <div class="item-row">
-                <div class="item-name">Печиво</div>
-                <div class="quantity-controls">
-                    <button class="minus">-</button>
-                    <div class="quantity-display">2</div>
-                    <button class="plus">+</button>
-                </div>
-                <div class="action-buttons">
-                    <button class="bought">Куплено</button>
-                    <button class="remove">×</button>
-                </div>
-            </div>
-
-            <div class="item-row">
-                <div class="item-name">Сир</div>
-                <div class="quantity-controls">
-                    <button class="minus">-</button>
-                    <div class="quantity-display">1</div>
-                    <button class="plus">+</button>
-                </div>
-                <div class="action-buttons">
-                    <button class="bought">Куплено</button>
-                    <button class="remove">×</button>
-                </div>
-            </div>
-        </div>
 
         <div class="sidebar">
             <div class="category">
                 <h3>Залишилося</h3>
-                <div class="item-tag">Печиво <span>2</span></div>
-                <div class="item-tag">Сир <span>1</span></div>
+                <div id="remaining-items-list"></div>
             </div>
 
             <div class="category">
                 <h3>Куплено</h3>
-                <div class="item-tag bought-item">Помідори <span>2</span></div>
+                <div id="bought-items-list"></div>
             </div>
         </div>
     </div>
     <div class="badge">
         BuyList
         <div class="badge-author">Created by:<br>Ivan Sosniuk</div>
-	</div>
+    </div>
+
+    <script src="main.js"></script>
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script>
-    const selectors = [
-    '.minus',
-    '.plus',
-    '.bought',
-    '.not-bought',
-    '#add-new-button',
-    '.remove'
-];
-
-const tooltips = [
-    'Зменшити кількість відповідного товару',
-    'Збільшити кількість відповідного товару',
-    'Позначити товар як придбаний',
-    'Позначити товар як НЕ придбаний',
-    'Додати новий товар',
-    'Видалити відповідний товар зі списку'
-];
-
-selectors.forEach((selector, index) => {
-    const certainButtons = document.querySelectorAll(selector);
-    certainButtons.forEach(button => {
-        button.setAttribute('data-tooltip', tooltips[index]);
-    });
-});
-        
-const tooltip = document.createElement('div');
-tooltip.className = 'tooltip';
-document.body.appendChild(tooltip);
-
-document.querySelectorAll('[data-tooltip]').forEach(el => {
-    el.addEventListener('mouseenter', e => {
-        const text = el.getAttribute('data-tooltip');
-        tooltip.textContent = text;
-
-        const rect = el.getBoundingClientRect();
-        tooltip.style.left = rect.left + rect.width / 2 + 'px';
-        tooltip.style.top = rect.top - 50 + window.scrollY + 'px';
-
-        tooltip.classList.add('show');
-    });
-
-    el.addEventListener('mouseleave', () => {
-        tooltip.classList.remove('show');
-    });
-});
-
-</script>
-
-</html>
