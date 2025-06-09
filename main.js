@@ -207,9 +207,9 @@ function saveShoppingList() {
 }
 
 function loadShoppingList() {
-    const savedList = localStorage.getItem("shoppingList");
-    if (savedList) {
-        shoppingList = JSON.parse(savedList);
+    const savedList = JSON.parse(localStorage.getItem("shoppingList"));
+    if (savedList&&savedList.length>0) {
+        shoppingList = savedList;
         console.log("Shopping list loaded from localStorage:", shoppingList);
     } else {
         console.log("No shopping list found in localStorage. Using default list.");
@@ -225,6 +225,7 @@ inputItemName.addEventListener('keypress', (event) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+    // console.log('213');
     loadShoppingList();
     renderShoppingList();
 });
